@@ -1,0 +1,29 @@
+---
+- hosts: all
+  gather_facts: no
+
+#  become: true
+
+  vars:
+    directory_path: "/home/thomas/ansible/directory_target_demo"
+  tasks:
+    - name: "try install apache"
+      apt:
+        name: "httpd"
+        state: "present"
+      become: true
+      ignore_errors: yes
+
+    - name: "create directory"
+      file:
+        path: "{{directory_path }}"
+        state: "directory"
+
+
+    - name: "ping"
+      ping:
+      register: retour_ping
+
+    - name: display retour ping
+      debug:
+        msg: "{{retour_ping}}"
