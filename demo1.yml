@@ -1,3 +1,5 @@
+# Auteur : HOARAU Thomas
+
 ---
 - hosts: all
   gather_facts: no
